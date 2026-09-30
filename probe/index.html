@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="tr" style="background:#0A7A2F">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v480 PROBE — Numerance DEĞİLDİR. Tek amaç: Telefon A'da en küçük Ana Ekran web uygulaması açılıyor mu?
+     Bilinçli olarak YOK: manifest, apple-mobile-web-app-capable, status-bar-style, apple-touch-startup-image,
+     harici CSS/JS, React, localStorage. Tek dış kaynak: ikon (Numerance'ın AYNI 180px dosyası).
+     Başlık "Probe" → iOS ikon alamazsa "P" harfli yedek karo üretir (Numerance'ın "N"sinden ayırt edilir). -->
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/numerance-icon-180.png">
+<title>Probe</title>
+</head>
+<body style="margin:0;background:#0A7A2F;color:#fff;font:700 28px/1.4 -apple-system,system-ui,sans-serif;text-align:center;padding:30vh 16px 0">
+<div>PROBE · HTML ✓</div>
+<div id="s" style="font-size:18px">script ✗</div>
+<script>
+try{
+  var sa = window.navigator.standalone === true;
+  var dm = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
+  document.getElementById("s").textContent = "script ✓ · " + (sa ? "STANDALONE" : (dm ? "DM-STANDALONE" : "BROWSER")) +
+    " · " + window.innerWidth + "×" + window.innerHeight + " · " + new Date().toLocaleTimeString("tr-TR");
+}catch(e){ document.getElementById("s").textContent = "script hata: " + e; }
+</script>
+</body>
+</html>
