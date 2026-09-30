@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="tr" style="background:#5B2C83">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v480 PROBE-LS — Numerance DEĞİLDİR. PASS eden /probe-css/ ile BİREBİR aynı; TEK değişken = v456/v458 ERKEN TEMA
+     script'i, v476/v480 index.html'den BAYT BAYT kopya ve gerçek sayfadaki SIRASIYLA (<title> ve stylesheet'ten önce).
+     Bu, başarısız sayfada PROBE-CSS'e göre İLK ÇALIŞAN farklı koddur: parser'ı durduran, SENKRON bir
+     localStorage.getItem çağrısı içerir. PROBE'ların hiçbiri depolamaya dokunmadı. Zemin mor, başlık "Probe LS". -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="apple-touch-startup-image" href="/startup/ios-launch-v2-1206x2622.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+<link rel="manifest" href="/probe-ls/manifest.webmanifest" />
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/numerance-icon-180.png">
+<script>
+      (function () {
+        try {
+          var bgs = {
+          "namib": "linear-gradient(180deg,#F5E7C9 0%,#FBD3A2 100%)",
+          "midnight": "linear-gradient(180deg,#1C2029 0%,#181B22 100%)",
+          "aegean": "linear-gradient(180deg,#262157 0%,#221F52 45%,#1A1740 100%)",
+          "zeytin": "linear-gradient(180deg,#F2F4E9 0%,#E8ECDA 100%)",
+          "arktik": "linear-gradient(180deg,#F6FAFE 0%,#DCEEF8 100%)",
+          "lav": "linear-gradient(180deg,#1C1418 0%,#0E0A0C 100%)",
+          "alp": "linear-gradient(180deg,#F7F9FC 0%,#E6EDF5 100%)"
+          };
+          var name = null;
+          try { name = localStorage.getItem("gg_theme"); } catch (e) {}
+          var bg = Object.prototype.hasOwnProperty.call(bgs, name) ? bgs[name] : bgs["aegean"];
+          document.documentElement.style.background = bg + " " + bg.match(/#[0-9a-f]{6}/i)[0];
+        } catch (e) {}
+      })();
+    </script>
+<title>Probe LS</title>
+<link rel="stylesheet" crossorigin href="/assets/index-CxVlS_sN.css">
+</head>
+<body style="margin:0;background:#5B2C83;color:#fff;font:700 28px/1.4 -apple-system,system-ui,sans-serif;text-align:center;padding:30vh 16px 0">
+<div>PROBE-LS · HTML ✓</div>
+<div id="s" style="font-size:18px">script ✗</div>
+<script>
+try{
+  var t0 = Math.round(performance.now());
+  var sa = window.navigator.standalone === true;
+  var dm = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
+  var si = window.matchMedia && window.matchMedia("(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)").matches;
+  document.getElementById("s").textContent = "script ✓ · " + (sa ? "STANDALONE" : (dm ? "DM-STANDALONE" : "BROWSER")) +
+    " · " + window.innerWidth + "×" + window.innerHeight + " · SI-media " + (si ? "EŞLEŞTİ" : "yok") + " · TEMA-JS " + (document.documentElement.style.background ? "✓" : "✗") + " · gövde " + t0 + "ms · CSS " + (function(){ try{ var l=document.querySelector('link[rel=stylesheet]'); if(!l||!l.sheet) return "YOK"; var n=0; try{ n=l.sheet.cssRules.length; }catch(x){ n="?"; } var e=performance.getEntriesByName(l.href)[0]; return "✓ " + n + " kural" + (e ? " · " + Math.round(e.responseEnd) + "ms" : ""); }catch(x){ return "hata"; } })() + " · " + new Date().toLocaleTimeString("tr-TR");
+}catch(e){ document.getElementById("s").textContent = "script hata: " + e; }
+</script>
+</body>
+</html>

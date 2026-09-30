@@ -1,0 +1,25 @@
+{
+  "name": "Probe LS",
+  "short_name": "Probe LS",
+  "description": "Finansal zekâ, seninle. Gelir, gider, nakit akışı ve varlıkların tek yerde.",
+  "lang": "tr",
+  "start_url": "/probe-ls/",
+  "scope": "/probe-ls/",
+  "display": "standalone",
+  "background_color": "#262157",
+  "theme_color": "#262157",
+  "icons": [
+    {
+      "src": "/icons/numerance-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/numerance-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
