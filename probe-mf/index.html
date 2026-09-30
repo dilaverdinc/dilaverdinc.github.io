@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tr" style="background:#8A4B00">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v480 PROBE-MF — Numerance DEĞİLDİR. PASS eden /probe-si/ ile BİREBİR aynı; TEK değişken = manifest
+     mekanizması: <link rel="manifest"> + ./manifest.webmanifest. Manifest Numerance'ınkiyle alan alan aynı
+     (display standalone · #262157 theme/background · lang · description · 192/512 ikonlar AYNI dosyalar);
+     ZORUNLU sapmalar: start_url/scope "/probe-mf/" (aksi hâlde kurulan uygulama "/" = v480-diag'ı açar)
+     ve name/short_name "Probe MF" (yalnız etiket). Zemin turuncu, başlık "Probe MF". -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="apple-touch-startup-image" href="/startup/ios-launch-v2-1206x2622.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+<link rel="manifest" href="/probe-mf/manifest.webmanifest" />
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/numerance-icon-180.png">
+<title>Probe MF</title>
+</head>
+<body style="margin:0;background:#8A4B00;color:#fff;font:700 28px/1.4 -apple-system,system-ui,sans-serif;text-align:center;padding:30vh 16px 0">
+<div>PROBE-MF · HTML ✓</div>
+<div id="s" style="font-size:18px">script ✗</div>
+<script>
+try{
+  var sa = window.navigator.standalone === true;
+  var dm = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
+  var si = window.matchMedia && window.matchMedia("(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)").matches;
+  document.getElementById("s").textContent = "script ✓ · " + (sa ? "STANDALONE" : (dm ? "DM-STANDALONE" : "BROWSER")) +
+    " · " + window.innerWidth + "×" + window.innerHeight + " · SI-media " + (si ? "EŞLEŞTİ" : "yok") + " · " + new Date().toLocaleTimeString("tr-TR");
+}catch(e){ document.getElementById("s").textContent = "script hata: " + e; }
+</script>
+</body>
+</html>
