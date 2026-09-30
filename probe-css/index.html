@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="tr" style="background:#0E6E6E">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- v480 PROBE-CSS — Numerance DEĞİLDİR. PASS eden /probe-mf/ ile BİREBİR aynı; TEK değişken = v480-diag'ın
+     <head>'indeki GERÇEK render-blocking stylesheet satırı (aynı /assets/ dosyası, aynı crossorigin, bayt bayt).
+     Stylesheet yüklenene kadar tarayıcı HİÇ boyamaz: istek standalone'da asılı kalırsa sonuç "tam beyaz".
+     Manifest yalnız start_url/scope "/probe-css/" ve ad "Probe CSS" ile PROBE-MF'ten ayrılır. Zemin camgöbeği.
+     YAYIN ÖNCESİ: aşağıdaki href, yayınlanmış kök /index.html'deki stylesheet href'iyle AYNI olmalı. -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="apple-touch-startup-image" href="/startup/ios-launch-v2-1206x2622.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+<link rel="manifest" href="/probe-css/manifest.webmanifest" />
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/numerance-icon-180.png">
+<title>Probe CSS</title>
+<link rel="stylesheet" crossorigin href="/assets/index-CxVlS_sN.css">
+</head>
+<body style="margin:0;background:#0E6E6E;color:#fff;font:700 28px/1.4 -apple-system,system-ui,sans-serif;text-align:center;padding:30vh 16px 0">
+<div>PROBE-CSS · HTML ✓</div>
+<div id="s" style="font-size:18px">script ✗</div>
+<script>
+try{
+  var sa = window.navigator.standalone === true;
+  var dm = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
+  var si = window.matchMedia && window.matchMedia("(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)").matches;
+  document.getElementById("s").textContent = "script ✓ · " + (sa ? "STANDALONE" : (dm ? "DM-STANDALONE" : "BROWSER")) +
+    " · " + window.innerWidth + "×" + window.innerHeight + " · SI-media " + (si ? "EŞLEŞTİ" : "yok") + " · CSS " + (function(){ try{ var l=document.querySelector('link[rel=stylesheet]'); if(!l||!l.sheet) return "YOK"; var n=0; try{ n=l.sheet.cssRules.length; }catch(x){ n="?"; } var e=performance.getEntriesByName(l.href)[0]; return "✓ " + n + " kural" + (e ? " · " + Math.round(e.responseEnd) + "ms" : ""); }catch(x){ return "hata"; } })() + " · " + new Date().toLocaleTimeString("tr-TR");
+}catch(e){ document.getElementById("s").textContent = "script hata: " + e; }
+</script>
+</body>
+</html>
