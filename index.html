@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/numerance-favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/numerance-favicon-48.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- v458 — iOS COLD LAUNCH SURFACE (saha kanıtı YALNIZ 402×874 @3x; diğer cihazlar kanıtlanmadı).
+         capable=yes + exact-media apple-touch-startup-image BİRLİKTE gerekir; biri eksikse iOS
+         native WHITE/BLACK yüzeye döner (S3-A/B/C). PNG statik, logosuz, opak #262157 — kayıtlı
+         temayı OKUYAMAZ (bilinçli). Mekanizmayı kaldırmak YASAK; PNG içeriği değişirse dosya adındaki
+         sürüm (-vN-) artırılır. black-translucent → çatıyı document zemini boyar. (23 · v458 kilitler) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Numerance" />
+    <meta name="application-name" content="Numerance" />
+    <meta name="description" content="Numerance — Finansal zekâ, seninle. Gelir, gider, nakit akışı ve varlıkların tek yerde." />
+    <meta name="theme-color" content="#262157" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/numerance-icon-180.png" />
+    <link rel="apple-touch-startup-image" href="/startup/ios-launch-v2-1206x2622.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+    <!-- v456/v458 — Early Theme Surface: React çalışmadan ÖNCE kayıtlı temanın zemini.
+         Harita App THEMES bg değerleriyle BİREBİR (23 kilitler); yeni renk/anahtar YOK.
+         v458: gradyanın arkasına ilk durağın OPAK rengi eklenir — yalnız gradyan şeffaf taban
+         bırakır ve black-translucent altında çatı BEYAZ görünür (V2 saha bulgusu).
+         <style> = script çalışmazsa varsayılan (aegean); body/#root html'i miras alır.
+         Kayıt yok/geçersiz → App varsayılanı (aegean). Hata açılışı ASLA engellemez. -->
+    <style>
+      html:root { background: linear-gradient(180deg,#262157 0%,#221F52 45%,#1A1740 100%) #262157; }
+      body, #root { background: inherit; }
+    </style>
+    <script>
+      (function () {
+        try {
+          var bgs = {
+          "namib": "linear-gradient(180deg,#F5E7C9 0%,#FBD3A2 100%)",
+          "midnight": "linear-gradient(180deg,#1C2029 0%,#181B22 100%)",
+          "aegean": "linear-gradient(180deg,#262157 0%,#221F52 45%,#1A1740 100%)",
+          "zeytin": "linear-gradient(180deg,#F2F4E9 0%,#E8ECDA 100%)",
+          "arktik": "linear-gradient(180deg,#F6FAFE 0%,#DCEEF8 100%)",
+          "lav": "linear-gradient(180deg,#1C1418 0%,#0E0A0C 100%)",
+          "alp": "linear-gradient(180deg,#F7F9FC 0%,#E6EDF5 100%)"
+          };
+          var name = null;
+          try { name = localStorage.getItem("gg_theme"); } catch (e) {}
+          var bg = Object.prototype.hasOwnProperty.call(bgs, name) ? bgs[name] : bgs["aegean"];
+          document.documentElement.style.background = bg + " " + bg.match(/#[0-9a-f]{6}/i)[0];
+        } catch (e) {}
+      })();
+    </script>
+    <title>Numerance</title>
+    <script type="module" crossorigin src="/assets/index-Bh5HEeQE.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CxVlS_sN.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- v480-diag — TANI ŞERİDİ (YALNIZ DİAGNOSTİK PREVIEW; Production'a GİTMEZ).
+         React'ten ve uygulama paketinden BAĞIMSIZ: düz HTML + satır içi stil + klasik inline script.
+         Uygulama davranışını değiştirmez: yalnız gözlemler. Kişisel/finansal DEĞER okumaz
+         (localStorage yalnız anahtar ADLARI sayılır). Şeride dokun → tek JSON rapor panoya kopyalanır.
+         Şerit görünmüyorsa: sayfa HİÇ boyanmıyor demektir (uygulamadan önceki katman). -->
+    <div id="gg-diag" role="button" tabindex="0" aria-label="Numerance diagnostic report — tap to copy" style="position:fixed;left:6px;right:76px;bottom:calc(env(safe-area-inset-bottom) + 78px);z-index:2147483647;box-sizing:border-box;padding:4px 30px 4px 7px;background:#FFD400;color:#000;border:2px solid #000;border-radius:7px;font:700 10px/1.3 ui-monospace,Menlo,Consolas,monospace;text-align:left;white-space:pre-wrap;word-break:break-all;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;cursor:pointer"><span id="gg-diag-text">DIAG v480 · HTML ✓ · script ✗</span><span id="gg-diag-min" role="button" aria-label="minimize" style="position:absolute;right:0;top:0;bottom:0;width:28px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#000">◂</span></div>
+    <script id="gg-diag-script">
+      /* v480-diag: klasik, senkron, ES5 uyumlu. Her şey try/catch içinde: tanı kodu ASLA uygulamayı durdurmaz. */
+      (function () {
+        var D = window.__GGDIAG = { v: "v480-diag", t0: Date.now(), steps: {}, errors: [], added: [], raf: null, auto: null };
+        var strip = document.getElementById("gg-diag"), txt = document.getElementById("gg-diag-text"), minBtn = document.getElementById("gg-diag-min");
+        var frozen = false, minimized = false, flashUntil = 0;
+        function now() { return Date.now() - D.t0; }
+        function r0(n) { return Math.round(n); }
+        function r1(n) { return Math.round(n * 10) / 10; }
+        function cut(s, n) { s = String(s == null ? "" : s); return s.length > n ? s.slice(0, n) + "…" : s; }
+        D.mark = function (k) { try { if (D.steps[k] == null) { D.steps[k] = now(); paintStrip(); } } catch (e) {} };
+        function mm(q) { try { return window.matchMedia(q).matches; } catch (e) { return null; } }
+        function mark1(k) { return D.steps[k] != null ? "✓" : "✗"; }
+        function line() {
+          var fps = D.raf ? Math.round(D.raf.frames * 1000 / Math.max(1, D.raf.ms)) + "fps" : "…fps";
+          var mode = window.navigator.standalone ? "SA" : (mm("(display-mode: standalone)") ? "DM" : "BR");
+          return "DIAG S" + mark1("script") + " 1F" + mark1("first_frame") + " B" + mark1("bundle") + " R" + mark1("root_child") + " F" + mark1("frame_after_mount") +
+            " · err" + D.errors.length + " · " + fps + " · " + mode + (Date.now() < flashUntil ? " · KOPYALANDI ✓" : "");
+        }
+        function paintStrip() { try { if (!frozen && !minimized && txt) txt.textContent = line(); } catch (e) {} }
+
+        /* 6/7 — hatalar (script + kaynak yükleme hataları dahil, capture) */
+        window.addEventListener("error", function (ev) {
+          try {
+            if (D.errors.length >= 12) return;
+            var t = ev.target;
+            if (t && t !== window && t.tagName) D.errors.push({ t: now(), type: "resource", tag: t.tagName.toLowerCase(), url: cut(t.src || t.href || "", 160) });
+            else D.errors.push({ t: now(), type: "error", msg: cut(ev.message, 220), src: cut(ev.filename, 120), line: ev.lineno, col: ev.colno, stack: cut(ev.error && ev.error.stack, 400) });
+            paintStrip();
+          } catch (e) {}
+        }, true);
+        window.addEventListener("unhandledrejection", function (ev) {
+          try { if (D.errors.length < 12) { var r = ev.reason; D.errors.push({ t: now(), type: "rejection", msg: cut(r && (r.message || r), 220), stack: cut(r && r.stack, 400) }); paintStrip(); } } catch (e) {}
+        });
+        /* React ErrorBoundary console.error'la loglar — yalnız metin başı yakalanır, davranış aynen sürer */
+        try {
+          var ce = console.error;
+          console.error = function () {
+            try { if (D.errors.length < 12) { var a = []; for (var i = 0; i < arguments.length && i < 3; i++) { var x = arguments[i]; a.push(x && x.message ? x.message : String(x)); } D.errors.push({ t: now(), type: "console.error", msg: cut(a.join(" | "), 260) }); } } catch (e) {}
+            return ce.apply(console, arguments);
+          };
+        } catch (e) {}
+
+        /* 3/4/5 — paket, kök, ilk kare. Paket işareti src/diagMark.js'ten (main.jsx'in İLK import'u). */
+        var root = document.getElementById("root"), ourIds = { "gg-diag": 1, "gg-diag-script": 1, "gg-diag-panel": 1, "gg-diag-probe": 1, "gg-diag-copy": 1 };
+        function afterMount() {
+          D.mark("root_child");
+          requestAnimationFrame(function () { requestAnimationFrame(function () { D.mark("frame_after_mount"); }); });
+          /* rAF hızı: YALNIZ 2 sn ölçülür, sonra durur (sürekli rAF boyamayı zorlayıp hatayı gizleyebilir) */
+          var n = 0, s = null;
+          function tick(ts) { if (s == null) s = ts; n++; if (ts - s < 2000) requestAnimationFrame(tick); else { D.raf = { frames: n, ms: r0(ts - s) }; paintStrip(); } }
+          requestAnimationFrame(tick);
+          /* Özet otomatik anlık görüntüsü: ilk yüklemeden 3 sn sonra, kullanıcı dokunmadan ÖNCE */
+          setTimeout(function () { try { D.auto = ozet(); D.steps.auto_snapshot = now(); } catch (e) { D.auto = { err: String(e) }; } paintStrip(); }, 3000);
+          /* Şerit yalnız OLAYLA güncellenir (adım/hata/kopyalama); periyodik yeniden boyama YOK. */
+        }
+        try {
+          var mo = new MutationObserver(function (list) {
+            for (var i = 0; i < list.length; i++) {
+              var m = list[i];
+              if (m.target === root) { if (root.firstChild && D.steps.root_child == null) afterMount(); continue; }
+              if (m.type === "attributes") { if (D.added.length < 30) D.added.push({ t: now(), attr: (m.target === document.documentElement ? "html" : m.target.tagName.toLowerCase()) + "@" + m.attributeName }); continue; }
+              for (var j = 0; j < m.addedNodes.length; j++) {
+                var nd = m.addedNodes[j];
+                if (nd.nodeType !== 1 || ourIds[nd.id] || D.added.length >= 30) continue;
+                D.added.push({ t: now(), in: m.target === document.head ? "head" : m.target.tagName.toLowerCase(), tag: nd.tagName.toLowerCase(), id: cut(nd.id, 40), src: cut(nd.getAttribute("src") || nd.getAttribute("href") || "", 120), len: (nd.textContent || "").length });
+              }
+            }
+          });
+          mo.observe(root, { childList: true });
+          mo.observe(document.head, { childList: true });
+          mo.observe(document.body, { childList: true, attributes: true });
+          mo.observe(document.documentElement, { childList: true, attributes: true, attributeFilter: ["class", "data-darkreader-mode", "data-darkreader-scheme", "data-theme"] });
+        } catch (e) { D.errors.push({ t: now(), type: "diag", msg: "MutationObserver: " + cut(e, 120) }); }
+
+        document.addEventListener("DOMContentLoaded", function () { D.mark("domcontentloaded"); });
+        window.addEventListener("load", function () { D.mark("load"); });
+        document.addEventListener("visibilitychange", function () { try { if (!D.vis) D.vis = []; if (D.vis.length < 12) D.vis.push(now() + ":" + document.visibilityState); } catch (e) {} });
+        window.addEventListener("pageshow", function (ev) { try { D.pageshow = { t: now(), persisted: !!ev.persisted }; } catch (e) {} });
+
+        /* 14 — viewport / safe-area / vh ailesi: ölçüm elemanı yalnız ölçüm anında eklenir ve hemen kaldırılır */
+        function probe(css) {
+          var p = document.createElement("div"); p.id = "gg-diag-probe";
+          p.style.cssText = "position:fixed;left:0;top:0;width:1px;visibility:hidden;pointer-events:none;" + css;
+          document.body.appendChild(p); var cs = getComputedStyle(p), out = [cs.paddingTop, cs.paddingRight, cs.paddingBottom, cs.paddingLeft, p.getBoundingClientRect().height];
+          document.body.removeChild(p); return out;
+        }
+        function env() {
+          var e = {}, vv = window.visualViewport;
+          e.ua = navigator.userAgent;
+          e.screen = [screen.width, screen.height]; e.avail = [screen.availWidth, screen.availHeight];
+          e.inner = [window.innerWidth, window.innerHeight]; e.outer = [window.outerWidth, window.outerHeight];
+          e.client = [document.documentElement.clientWidth, document.documentElement.clientHeight];
+          e.dpr = window.devicePixelRatio;
+          e.vv = vv ? [r1(vv.width), r1(vv.height), r1(vv.scale), r1(vv.offsetTop)] : null;
+          e.standalone = window.navigator.standalone === undefined ? "undef" : window.navigator.standalone;
+          e.dm = { standalone: mm("(display-mode: standalone)"), fullscreen: mm("(display-mode: fullscreen)"), minimalUi: mm("(display-mode: minimal-ui)"), browser: mm("(display-mode: browser)") };
+          try { var sa = probe("padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);"); e.safe = [sa[0], sa[1], sa[2], sa[3]].join(" "); } catch (x) { e.safe = "err"; }
+          try { e.vh = { vh: r1(probe("height:100vh;")[4]), svh: r1(probe("height:100svh;")[4]), lvh: r1(probe("height:100lvh;")[4]), dvh: r1(probe("height:100dvh;")[4]) }; } catch (x) { e.vh = "err"; }
+          e.orient = mm("(orientation: portrait)") ? "portrait" : "landscape";
+          e.pref = { dark: mm("(prefers-color-scheme: dark)"), reducedMotion: mm("(prefers-reduced-motion: reduce)"), contrastMore: mm("(prefers-contrast: more)"), reducedTransparency: mm("(prefers-reduced-transparency: reduce)"), invertedColors: mm("(inverted-colors: inverted)") };
+          e.vis = document.visibilityState; e.url = location.pathname + location.search;
+          try { var vm = document.querySelector('meta[name="viewport"]'); e.viewportMeta = vm ? vm.getAttribute("content") : null; } catch (x) {}
+          try { var keys = [], i; for (i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (/^gg_/.test(k)) keys.push(k); } e.storage = { ok: true, total: localStorage.length, ggKeys: keys.sort() }; } catch (x) { e.storage = { ok: false, err: cut(x, 100) }; }
+          e.hwc = navigator.hardwareConcurrency || null;
+          try { e.paint = performance.getEntriesByType("paint").map(function (p) { return p.name + ":" + r0(p.startTime); }); } catch (x) { e.paint = "n/a"; }
+          try { var nav = performance.getEntriesByType("navigation")[0]; e.nav = nav ? { type: nav.type, dcl: r0(nav.domContentLoadedEventEnd), load: r0(nav.loadEventEnd), transfer: nav.transferSize } : null; } catch (x) {}
+          return e;
+        }
+
+        /* 15 — beklenmeyen/eklenmiş script, stil, üst düzey öznitelik */
+        function attrs(el) { var a = [], i; for (i = 0; i < el.attributes.length; i++) a.push(el.attributes[i].name + "=" + cut(el.attributes[i].value, 60)); return a; }
+        function inj() {
+          var o = { htmlAttrs: attrs(document.documentElement), bodyAttrs: attrs(document.body), added: D.added };
+          var scripts = [], styles = [], i, n;
+          var ss = document.querySelectorAll("script"); for (i = 0; i < ss.length; i++) { n = ss[i]; if (root.contains(n) || ourIds[n.id]) continue; scripts.push((n.type || "classic") + ":" + (n.src ? cut(n.src.replace(location.origin, ""), 90) : "inline" + (n.textContent || "").length)); }
+          var st = document.querySelectorAll("style,link[rel~=stylesheet]"); for (i = 0; i < st.length; i++) { n = st[i]; if (root.contains(n)) continue; styles.push(n.tagName.toLowerCase() + ":" + (n.href ? cut(n.href.replace(location.origin, ""), 90) : "inline" + (n.textContent || "").length)); }
+          o.scripts = scripts; o.styles = styles;
+          o.sheets = document.styleSheets.length; o.adopted = document.adoptedStyleSheets ? document.adoptedStyleSheets.length : "n/a";
+          var kids = []; for (i = 0; i < document.body.children.length; i++) { n = document.body.children[i]; kids.push(n.tagName.toLowerCase() + (n.id ? "#" + n.id : "")); } o.bodyKids = kids;
+          try { var cs = getComputedStyle(document.documentElement); o.htmlFilter = cs.filter; o.htmlBg = cut(cs.backgroundColor, 40); } catch (x) {}
+          return o;
+        }
+
+        /* 16 — Özet başlıkları: geometri + hesaplanmış stil + üstte hangi eleman var */
+        var HEADS = { income_used: ["Gelir Kullanımı", "Income Used"], income_distribution: ["Gelir Dağılımı", "Income Distribution"], expense_distribution: ["Gider Dağılımı", "Expense Distribution"], previous_month: ["Geçen Ay", "Previous Month"], next_month: ["Gelecek Ay", "Next Month"] };
+        function desc(el) { if (!el || !el.tagName) return String(el); var c = typeof el.className === "string" && el.className ? "." + el.className.split(/\s+/).slice(0, 2).join(".") : ""; return el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") + c; }
+        function bgOf(el) { for (var x = el; x && x.nodeType === 1; x = x.parentElement) { var b = getComputedStyle(x).backgroundColor; if (b && b !== "transparent" && b !== "rgba(0, 0, 0, 0)") return desc(x) + " " + b; } return "none"; }
+        function effOp(el) { var o = 1; for (var x = el; x && x.nodeType === 1; x = x.parentElement) o *= parseFloat(getComputedStyle(x).opacity); return r1(o * 100) / 100; }
+        function suspect(el) {
+          var out = [];
+          for (var x = el; x && x.nodeType === 1 && out.length < 4; x = x.parentElement) {
+            var cs = getComputedStyle(x), f = [];
+            if (parseFloat(cs.opacity) < 1) f.push("op" + cs.opacity);
+            if (cs.visibility !== "visible") f.push("vis:" + cs.visibility);
+            if (cs.filter && cs.filter !== "none") f.push("filter:" + cut(cs.filter, 40));
+            if (cs.transform && cs.transform !== "none") f.push("tf:" + cut(cs.transform, 40));
+            if (cs.animationName && cs.animationName !== "none") f.push("anim:" + cs.animationName);
+            if (cs.overflowY === "auto" || cs.overflowY === "scroll") f.push("scroll");
+            if (cs.zoom && cs.zoom !== "1" && cs.zoom !== "normal") f.push("zoom" + cs.zoom);
+            if (f.length) out.push(desc(x) + "[" + f.join(",") + "]");
+          }
+          return out;
+        }
+        function ozet() {
+          var o = { t: now() }, i, k;
+          var all = document.querySelectorAll("#root *"), map = {};
+          for (i = 0; i < all.length; i++) {
+            var el = all[i]; if (el.children.length) continue;
+            var tx = (el.textContent || "").replace(/\s+/g, " ").trim();
+            for (k in HEADS) if (HEADS[k][0] === tx || HEADS[k][1] === tx) { if (!map[k]) map[k] = []; map[k].push(el); }
+          }
+          o.heads = [];
+          for (k in HEADS) {
+            var list = map[k] || [];
+            if (!list.length) { o.heads.push({ k: k, found: 0 }); continue; }
+            var h = list[0], rc = h.getBoundingClientRect(), cs = getComputedStyle(h);
+            var cx = rc.left + rc.width / 2, cy = rc.top + rc.height / 2, hit = null;
+            try { var at = (cy >= 0 && cy < window.innerHeight) ? document.elementFromPoint(cx, cy) : null; hit = !at ? "offscreen" : (at === h ? "self" : (h.contains(at) ? "child" : (at.contains(h) ? "ancestor:" + desc(at) : "OTHER:" + desc(at)))); } catch (x) { hit = "err"; }
+            o.heads.push({ k: k, found: list.length, r: [r0(rc.left), r0(rc.top), r0(rc.width), r0(rc.height)], op: cs.opacity, eop: effOp(h), vis: cs.visibility, disp: cs.display, filt: cs.filter, col: cs.color, bg: bgOf(h), hit: hit, sus: suspect(h) });
+          }
+          var w = document.querySelector(".month-slide-fwd,.month-slide-back");
+          if (w) {
+            var wcs = getComputedStyle(w), an = [];
+            try { var A = w.getAnimations ? w.getAnimations() : []; for (i = 0; i < A.length; i++) an.push(A[i].playState + "@" + r0(A[i].currentTime || 0)); } catch (x) { an = ["n/a"]; }
+            o.wrap = { cls: w.className, op: wcs.opacity, tf: wcs.transform, anim: wcs.animationName, anims: an, kids: w.children.length, text: (w.textContent || "").length };
+            var sc = w.parentElement; if (sc) { var sr = sc.getBoundingClientRect(); o.scroll = { top: r0(sc.scrollTop), ch: sc.clientHeight, sh: sc.scrollHeight, r: [r0(sr.top), r0(sr.height)] }; }
+          } else o.wrap = null;
+          var ds = document.querySelectorAll(".dist-scroll"); o.dist = [];
+          for (i = 0; i < ds.length && i < 3; i++) { var d = ds[i], dr = d.getBoundingClientRect(), dcs = getComputedStyle(d); o.dist.push({ r: [r0(dr.top), r0(dr.height)], kids: d.children.length, eop: effOp(d), att: dcs.backgroundAttachment, bgc: dcs.backgroundColor }); }
+          try { var rr = root.getBoundingClientRect(); o.root = { kids: root.children.length, h: r0(rr.height), text: (root.textContent || "").length }; } catch (x) {}
+          return o;
+        }
+
+        function report() {
+          var o = { v: D.v, t: now(), steps: D.steps, errors: D.errors, raf: D.raf, vis: D.vis || [], pageshow: D.pageshow || null };
+          try { o.env = env(); } catch (e) { o.env = { err: String(e) }; }
+          try { o.inj = inj(); } catch (e) { o.inj = { err: String(e) }; }
+          o.ozetAuto = D.auto;
+          try { o.ozetNow = ozet(); } catch (e) { o.ozetNow = { err: String(e) }; }
+          return JSON.stringify(o);
+        }
+        D.report = report;
+
+        function showPanel(s) {
+          var p = document.getElementById("gg-diag-panel");
+          if (!p) {
+            p = document.createElement("div"); p.id = "gg-diag-panel";
+            p.style.cssText = "position:fixed;left:8px;right:8px;top:calc(env(safe-area-inset-top) + 20px);bottom:calc(env(safe-area-inset-bottom) + 20px);z-index:2147483647;background:#FFF8C4;border:2px solid #000;padding:8px;display:flex;flex-direction:column;gap:6px;font:12px ui-monospace,Menlo,monospace;color:#000";
+            p.innerHTML = '<div style="font-weight:700">Kopyalama engellendi — metni seçip kopyalayın</div><textarea id="gg-diag-ta" readonly style="flex:1;width:100%;box-sizing:border-box;font:11px ui-monospace,Menlo,monospace"></textarea><button id="gg-diag-close" style="font:700 14px sans-serif;padding:8px">Kapat</button>';
+            document.body.appendChild(p);
+            document.getElementById("gg-diag-close").onclick = function () { p.parentNode.removeChild(p); };
+          }
+          var ta = document.getElementById("gg-diag-ta"); ta.value = s; try { ta.focus(); ta.select(); ta.setSelectionRange(0, s.length); } catch (e) {}
+        }
+        function legacyCopy(s) {
+          try {
+            var ta = document.createElement("textarea"); ta.id = "gg-diag-copy"; ta.value = s; ta.setAttribute("readonly", "");
+            ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px"; document.body.appendChild(ta);
+            ta.select(); ta.setSelectionRange(0, s.length); var ok = document.execCommand("copy"); document.body.removeChild(ta); return ok;
+          } catch (e) { return false; }
+        }
+        function done() { flashUntil = Date.now() + 2500; var f = frozen; frozen = false; paintStrip(); frozen = f; setTimeout(function () { var f2 = frozen; frozen = false; paintStrip(); frozen = f2; }, 2600); }
+        strip.addEventListener("click", function () {
+          var s; try { s = report(); } catch (e) { s = JSON.stringify({ v: D.v, reportError: String(e) }); }
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(s).then(done, function () { if (legacyCopy(s)) done(); else showPanel(s); });
+              return;
+            }
+          } catch (e) {}
+          if (legacyCopy(s)) done(); else showPanel(s);
+        });
+        minBtn.addEventListener("click", function (ev) {
+          ev.stopPropagation(); minimized = !minimized;
+          if (minimized) { strip.style.right = "auto"; strip.style.width = "56px"; txt.textContent = "D"; minBtn.textContent = "▸"; }
+          else { strip.style.right = "76px"; strip.style.width = ""; minBtn.textContent = "◂"; var f = frozen; frozen = false; paintStrip(); frozen = f; }
+        });
+
+        D.mark("script");
+        try { requestAnimationFrame(function () { D.mark("first_frame"); }); } catch (e) {}
+        if (root && root.firstChild) afterMount();
+      })();
+    </script>
+  </body>
+</html>
